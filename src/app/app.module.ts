@@ -23,15 +23,7 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { AuthService } from './shared/services/auth.service';
 import { TaskIndexComponent } from './components/task-index/task-index.component';
-
-
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
-import { MatInputModule } from '@angular/material/input';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatSliderModule } from '@angular/material/slider';
+import { MaterialModule } from './core/material.module';
 
 @NgModule({
   declarations: [
@@ -59,15 +51,7 @@ import { MatSliderModule } from '@angular/material/slider';
     DragDropModule,
     FormsModule,ReactiveFormsModule,
     BrowserAnimationsModule,
-
-    MatToolbarModule,
-    MatIconModule,
-    MatCardModule,
-    MatButtonModule,
-    MatIconModule,
-    MatInputModule,
-    MatDialogModule,
-    MatSliderModule
+    MaterialModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
