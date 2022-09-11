@@ -16,7 +16,7 @@ export class SectorService {
 
       new TextboxInput({
         key: 'companyid',
-        label: 'companyid',
+        label: 'Company',
         required: true,
         order: 1
       }),

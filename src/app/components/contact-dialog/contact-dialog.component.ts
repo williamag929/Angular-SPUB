@@ -35,8 +35,6 @@ export class ContactDialogComponent{
     this.inputs$ = service.getInputs();
   }
 
-
-
   cancel(): void {
     this.data.contact.firstName = this.backupContact.firstName;
     this.data.contact.lastName = this.backupContact.lastName;

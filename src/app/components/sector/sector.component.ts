@@ -44,24 +44,48 @@ export class SectorComponent implements OnInit {
     this.sectors.pipe(
         takeUntil(this.destroy$) // Complete & cleanup
     ).subscribe(data => this.dataSource.data = data);
+
+    console.log(this.sectors);
   }
 
   newSector(){
     const dialogRef = this.dialog.open(SectorDialogComponent, {
       width: '270px',
       data: {
-        task: {},
+        sector: {},
       },
     });
     dialogRef
       .afterClosed()
       .subscribe((result: SectorDialogResult|undefined) => {
+        console.log('close',result);
         if (!result) {
           return;
         }
-        this.store.collection('sectors').add(result.sector);
+        this.store.collection('sectors').add(result);
       });
   }
+
+
+  editSector(row: Sector){
+    const dialogRef = this.dialog.open(SectorDialogComponent, {
+      width: '270px',
+      data: {
+        sector: row,
+      },
+    });
+    dialogRef.afterClosed().subscribe((result: SectorDialogResult|undefined) => {    
+      if (!result) {
+        return;
+      }
+      if (result.delete) {
+        this.store.collection('sectors').doc(row.id).delete();
+      } else {
+        this.store.collection('sectors').doc(row.id).update(result);
+      }
+    });
+  }
+
 
   ngOnDestroy() {
     this.destroy$.next();

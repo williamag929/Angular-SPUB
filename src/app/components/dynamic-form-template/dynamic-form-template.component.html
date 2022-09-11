@@ -1,15 +1,15 @@
 <div [formGroup]="form">
-    <div [ngSwitch]="question.controlType">
-        <div class="errorMessage" *ngIf="!isValid">{{question.label}} is required</div>
+    <div [ngSwitch]="model.controlType">
+        <div class="errorMessage" *ngIf="!isValid">{{model.label}} is required</div>
         <mat-form-field appearance="fill" *ngSwitchCase="'textbox'">
-            <mat-label [attr.for]="question.key">{{question.label}}</mat-label>
-            <input matInput *ngSwitchCase="'textbox'" [formControlName]="question.key"
-            [id]="question.key" [type]="question.type">
+            <mat-label [attr.for]="model.key">{{model.label}}</mat-label>
+            <input matInput *ngSwitchCase="'textbox'" [formControlName]="model.key"
+            [id]="model.key" [type]="model.type">
         </mat-form-field>
         <mat-form-field appearance="fill" *ngSwitchCase="'dropdown'">
-            <mat-label [attr.for]="question.key">{{question.label}}</mat-label>
-            <mat-select [id]="question.key" *ngSwitchCase="'dropdown'" [formControlName]="question.key">
-            <mat-option *ngFor="let opt of question.options" [value]="opt.key">{{opt.value}}</mat-option>
+            <mat-label [attr.for]="model.key">{{model.label}}</mat-label>
+            <mat-select [id]="model.key" *ngSwitchCase="'dropdown'" [formControlName]="model.key">
+            <mat-option *ngFor="let opt of model.options" [value]="opt.key">{{opt.value}}</mat-option>
             </mat-select>
         </mat-form-field>
     </div>

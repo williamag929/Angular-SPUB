@@ -6,39 +6,69 @@ import { Observable } from 'rxjs';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SectorService } from 'src/app/shared/services/sector.service';
 import { Sector } from '../../../Models/sector';
+import { ControlService } from 'src/app/shared/services/control.service';
 
 
 @Component({
   selector: 'app-sector-dialog',
-  template: `
-  <div>
-    <h2>Sector</h2>
-    <app-dynamic-form [inputControls]="inputs$ | async"></app-dynamic-form>
-  </div>
+  template: ` 
+    <form (ngSubmit)="onSubmit()" [formGroup]="form">
+        <div *ngFor="let input of inputControls" class="form-row">
+          <app-question [model]="input" [form]="form"></app-question>
+        </div>
+    
+        <div class="form-row">
+          <button type="submit" [disabled]="!form.valid">Save</button>
+        </div>
+      </form>
 `,
   styleUrls: ['./sector-dialog.component.css'],
-  providers:  [SectorService]
+  providers:  [ControlService, SectorService]
 
 })
-export class SectorDialogComponent {
+export class SectorDialogComponent implements OnInit {
+
+  @Input() inputControls: InputBase<string>[] | null = [];
+  form!: FormGroup;
+  payLoad = '';
 
   inputs$: Observable<InputBase<any>[]>;
-  @Input() form!: FormGroup;
-  @Input() inputbase!: InputBase<string>;
-  @Output() onSubmit = new EventEmitter();
-  get isValid() { return this.form.controls[this.inputbase.key].valid; }
+  //@Input() form!: FormGroup;
+  //@Input() inputbase!: InputBase<string>;
+  //@Output() onSubmit = new EventEmitter();
+  //get isValid() { return this.form.controls[this.inputbase.key].valid; }
   //private backupSector: Partial<Sector> = { ...this.data.sector };
-  contact: any;
+  sector: any;
 
-  constructor(service: SectorService,private fb: FormBuilder,
+  constructor(private qcs: ControlService, service: SectorService,
     public dialogRef: MatDialogRef<SectorDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: SectorDialogComponent
+    @Inject(MAT_DIALOG_DATA) public data: SectorDialogData
   ) {
-    this.inputs$ = service.getInputs();
+      this.inputs$ = service.getInputs();
+      service.getInputs().subscribe(element => this.inputControls = element);
+     
+      
+    }
+  
+  ngOnInit() {
+    this.form = this.qcs.toFormGroup(this.inputControls as InputBase<string>[]);
+  
+    //this.form.controls['id'].setValue(this.data.sector.id);
+    this.form.controls['companyid'].setValue(this.data.sector.companyid);
+    this.form.controls['name'].setValue(this.data.sector.name);
+  }
+
+  onSubmit() {
+    this.payLoad = JSON.stringify(this.form.getRawValue());
+    console.log('dynamic',this.payLoad);
+
+    this.data = this.form.getRawValue();
+    console.log(this.data);
+
+    this.dialogRef.close(this.form.getRawValue());
   }
 
   cancel(): void {
-  
     this.dialogRef.close(this.data);
   }
 

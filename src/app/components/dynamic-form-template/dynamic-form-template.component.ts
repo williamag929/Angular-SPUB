@@ -8,8 +8,8 @@ import { InputBase } from '../../shared/base/input-base';
   templateUrl: './dynamic-form-template.component.html'
 })
 export class DynamicFormTemplateComponent {
-  @Input() question!: InputBase<string>;
+  @Input() model!: InputBase<string>;
   @Input() form!: FormGroup;
   @Output() onSubmit = new EventEmitter();
-  get isValid() { return this.form.controls[this.question.key].valid; }
+  get isValid() { return this.form.controls[this.model.key].valid; }
 }

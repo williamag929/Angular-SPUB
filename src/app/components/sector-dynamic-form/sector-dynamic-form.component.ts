@@ -24,6 +24,9 @@ export class SectorDynamicFormComponent implements OnInit {
 
   onSubmit() {
     this.payLoad = JSON.stringify(this.form.getRawValue());
+    console.log('sector',this.payLoad);
+
+    
   }
 }
 
