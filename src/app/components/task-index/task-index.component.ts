@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { Task } from '../../../Models/task';
+import { TaskModel } from '../../../Models/task';
 import { CdkDragDrop, transferArrayItem } from '@angular/cdk/drag-drop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
@@ -10,9 +10,9 @@ import { TaskDialogComponent, TaskDialogResult } from './../task-dialog/task-dia
 import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/compat/firestore';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-const getObservable = (collection: AngularFirestoreCollection<Task>) => {
-  const subject = new BehaviorSubject<Task[]>([]);
-  collection.valueChanges({ idField: 'id' }).subscribe((val: Task[]) => {
+const getObservable = (collection: AngularFirestoreCollection<TaskModel>) => {
+  const subject = new BehaviorSubject<TaskModel[]>([]);
+  collection.valueChanges({ idField: 'id' }).subscribe((val: TaskModel[]) => {
     subject.next(val);
   });
   return subject;
@@ -25,9 +25,9 @@ const getObservable = (collection: AngularFirestoreCollection<Task>) => {
   styleUrls: ['./task-index.component.css']
 })
 export class TaskIndexComponent {
-    todo = getObservable(this.store.collection('todo')) as Observable<Task[]>;
-    inProgress = getObservable(this.store.collection('inProgress')) as Observable<Task[]>;
-    done = getObservable(this.store.collection('done')) as Observable<Task[]>;
+    todo = getObservable(this.store.collection('todo')) as Observable<TaskModel[]>;
+    inProgress = getObservable(this.store.collection('inProgress')) as Observable<TaskModel[]>;
+    done = getObservable(this.store.collection('done')) as Observable<TaskModel[]>;
  
 
   //Observable<any> todo = this.store.doc('todo').valueChanges();
@@ -57,7 +57,7 @@ export class TaskIndexComponent {
   //inProgress: Task[] = [];
   //done: Task[] = [];
 
-  editTask(list: 'done' | 'todo' | 'inProgress', task: Task): void {
+  editTask(list: 'done' | 'todo' | 'inProgress', task: TaskModel): void {
     const dialogRef = this.dialog.open(TaskDialogComponent, {
       width: '270px',
       data: {
@@ -78,7 +78,7 @@ export class TaskIndexComponent {
   }
 
 
-  drop(  event: CdkDragDrop<Task[]|any>): void {
+  drop(  event: CdkDragDrop<TaskModel[]|any>): void {
     if (event.previousContainer === event.container) {
       return;
     }
@@ -122,17 +122,5 @@ export class TaskIndexComponent {
   }
 }
 
-const firebaseConfig = {
-  apiKey: "AIzaSyCq-vKiGLhl99QQEUTPrH0M9BG5UarI94k",
-  authDomain: "lecturecollectapp.firebaseapp.com",
-  projectId: "lecturecollectapp",
-  storageBucket: "lecturecollectapp.appspot.com",
-  messagingSenderId: "907204765651",
-  appId: "1:907204765651:web:b4398508d96e689ba03126",
-  measurementId: "G-R46KLSP4L9"
-};
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
 

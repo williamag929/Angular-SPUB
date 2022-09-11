@@ -1,0 +1,10 @@
+<p>sector-dynamic-form works!</p>
+<form (ngSubmit)="onSubmit()" [formGroup]="form">
+    <div *ngFor="let input of inputControls" class="form-row">
+      <app-question [question]="input" [form]="form"></app-question>
+    </div>
+
+    <div class="form-row">
+      <button type="submit" [disabled]="!form.valid">Save</button>
+    </div>
+  </form>

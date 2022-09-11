@@ -8,6 +8,9 @@ import { VerifyEmailComponent } from './components/verify-email/verify-email.com
 import { AuthGuard } from './shared/guard/auth.guard';
 import { TaskComponent } from './components/task/task.component';
 import { TaskIndexComponent } from './components/task-index/task-index.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { ContactDialogComponent } from './components/contact-dialog/contact-dialog.component';
+import { SectorComponent } from './components/sector/sector.component';
 const routes: Routes = [
   { path: '', redirectTo: '/sign-in', pathMatch: 'full' },
   { path: 'sign-in', component: SignInComponent },
@@ -17,6 +20,9 @@ const routes: Routes = [
   { path: 'verify-email-address', component: VerifyEmailComponent },
   { path: 'task-index', component: TaskIndexComponent },
   { path: 'task', component: TaskComponent },
+  { path: 'contacts', component: ContactComponent},
+  { path: 'sectors', component: SectorComponent},
+  { path: 'contact-dialog', component: ContactDialogComponent}
 ];
 
 @NgModule({

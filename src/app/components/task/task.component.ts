@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Task } from '../../../Models/task';
+import { TaskModel } from '../../../Models/task';
 
 @Component({
   selector: 'app-task',
@@ -7,8 +7,8 @@ import { Task } from '../../../Models/task';
   styleUrls: ['./task.component.css']
 })
 export class TaskComponent implements OnInit {
-  @Input() task: Task | null = null;
-  @Output() edit = new EventEmitter<Task>();
+  @Input() task: TaskModel | null = null;
+  @Output() edit = new EventEmitter<TaskModel>();
 
   constructor() { }
 

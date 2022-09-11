@@ -24,6 +24,12 @@ import { VerifyEmailComponent } from './components/verify-email/verify-email.com
 import { AuthService } from './shared/services/auth.service';
 import { TaskIndexComponent } from './components/task-index/task-index.component';
 import { MaterialModule } from './core/material.module';
+import { ContactDialogComponent } from './components/contact-dialog/contact-dialog.component';
+import { DynamicFormComponent } from './components/dynamic-form/dynamic-form.component';
+import { DynamicFormTemplateComponent } from './components/dynamic-form-template/dynamic-form-template.component';
+import { SectorComponent } from './components/sector/sector.component';
+import { SectorDialogComponent } from './components/sector-dialog/sector-dialog.component';
+import { SectorDynamicFormComponent } from './components/sector-dynamic-form/sector-dynamic-form.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +44,13 @@ import { MaterialModule } from './core/material.module';
     SignUpComponent,
     ForgotPasswordComponent,
     VerifyEmailComponent,
-    TaskIndexComponent
+    TaskIndexComponent,
+    ContactDialogComponent,
+    DynamicFormComponent,
+    DynamicFormTemplateComponent,
+    SectorComponent,
+    SectorDialogComponent,
+    SectorDynamicFormComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),

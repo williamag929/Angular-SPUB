@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Task } from '../../../Models/task';
+import { TaskModel } from '../../../Models/task';
 
 @Component({
   selector: 'app-task-dialog',
@@ -8,7 +8,7 @@ import { Task } from '../../../Models/task';
   styleUrls: ['./task-dialog.component.css'],
 })
 export class TaskDialogComponent {
-  private backupTask: Partial<Task> = { ...this.data.task };
+  private backupTask: Partial<TaskModel> = { ...this.data.task };
   task: any;
 
   constructor(
@@ -23,11 +23,11 @@ export class TaskDialogComponent {
   }
 }
 export interface TaskDialogData {
-  task: Partial<Task>;
+  task: Partial<TaskModel>;
   enableDelete: boolean;
 }
 
 export interface TaskDialogResult {
-  task: Task;
+  task: TaskModel;
   delete?: boolean;
 }
