@@ -72,6 +72,7 @@ export class SectorComponent implements OnInit {
       width: '270px',
       data: {
         sector: row,
+        enableDelete: true,
       },
     });
     dialogRef.afterClosed().subscribe((result: SectorDialogResult|undefined) => {    

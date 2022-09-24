@@ -17,9 +17,21 @@ import { ControlService } from 'src/app/shared/services/control.service';
           <app-question [model]="input" [form]="form"></app-question>
         </div>
     
-        <div class="form-row">
-          <button type="submit" [disabled]="!form.valid">Save</button>
+     
+        <div mat-dialog-actions>
+          <button mat-button type="submit" [disabled]="!form.valid">Ok</button>
+          <button mat-button (click)="cancel()">Cancel</button>
+          <button
+            *ngIf="data.enableDelete"
+            mat-fab
+            color="primary"
+            aria-label="Delete"
+            [mat-dialog-close]="{ result: data, delete: true }">
+            <mat-icon>delete</mat-icon>
+          </button>
         </div>
+
+
       </form>
 `,
   styleUrls: ['./sector-dialog.component.css'],

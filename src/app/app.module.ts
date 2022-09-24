@@ -30,6 +30,11 @@ import { DynamicFormTemplateComponent } from './components/dynamic-form-template
 import { SectorComponent } from './components/sector/sector.component';
 import { SectorDialogComponent } from './components/sector-dialog/sector-dialog.component';
 import { SectorDynamicFormComponent } from './components/sector-dynamic-form/sector-dynamic-form.component';
+import { SuscriptionDialogComponent } from './components/suscription-dialog/suscription-dialog.component';
+import { CompanyDialogComponent } from './components/company-dialog/company-dialog.component';
+import { CompanyComponent } from './components/company/company.component';
+import { PriceComponent } from './components/price/price.component';
+import { PriceDialogComponent } from './components/price-dialog/price-dialog.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +55,12 @@ import { SectorDynamicFormComponent } from './components/sector-dynamic-form/sec
     DynamicFormTemplateComponent,
     SectorComponent,
     SectorDialogComponent,
-    SectorDynamicFormComponent
+    SectorDynamicFormComponent,
+    SuscriptionDialogComponent,
+    CompanyDialogComponent,
+    CompanyComponent,
+    PriceComponent,
+    PriceDialogComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
