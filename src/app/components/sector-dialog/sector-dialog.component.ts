@@ -12,27 +12,23 @@ import { ControlService } from 'src/app/shared/services/control.service';
 @Component({
   selector: 'app-sector-dialog',
   template: ` 
-    <form (ngSubmit)="onSubmit()" [formGroup]="form">
-        <div *ngFor="let input of inputControls" class="form-row">
-          <app-question [model]="input" [form]="form"></app-question>
-        </div>
-    
-     
-        <div mat-dialog-actions>
-          <button mat-button type="submit" [disabled]="!form.valid">Ok</button>
-          <button mat-button (click)="cancel()">Cancel</button>
-          <button
-            *ngIf="data.enableDelete"
-            mat-fab
-            color="primary"
-            aria-label="Delete"
-            [mat-dialog-close]="{ result: data, delete: true }">
-            <mat-icon>delete</mat-icon>
-          </button>
-        </div>
-
-
-      </form>
+  <form (ngSubmit)="onSubmit()" [formGroup]="form">
+    <div *ngFor="let input of inputControls" class="form-row">
+      <app-question [model]="input" [form]="form"></app-question>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button type="submit" [disabled]="!form.valid">Ok</button>
+      <button mat-button (click)="cancel()">Cancel</button>
+      <button
+        *ngIf="data.enableDelete"
+        mat-fab
+        color="primary"
+        aria-label="Delete"
+        [mat-dialog-close]="{ result: data, delete: true }">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </form>
 `,
   styleUrls: ['./sector-dialog.component.css'],
   providers:  [ControlService, SectorService]

@@ -1,1 +1,126 @@
-<p>suscription-dialog works!</p>
+<form (ngSubmit)="onSubmit()" [formGroup]="form">
+  <div class="form-row">
+    <div clas="">
+      <div [formGroup]="form">
+        <div>
+          <mat-form-field appearance="fill">
+            <mat-label>Contact</mat-label>
+            <mat-select id="contactid" formControlName="contactid">
+              <mat-option *ngFor="let opt of contacts | async" [value]="opt.id">
+                {{opt.firstName}} {{opt.lastName}} {{opt.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearance="fill">
+            <mat-label>Sector</mat-label>
+            <mat-select id="sectorid" formControlName="sectorid">
+              <mat-option *ngFor="let opt of sectors | async" [value]="opt.id">
+                {{opt.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field appearance="fill">
+            <mat-label>Address</mat-label>
+            <input
+              matInput
+              type="Text"
+              formControlName="address"
+              [class.is-invalid]="addressInvalid"
+              id="address"
+            />
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field appearance="fill">
+            <mat-label>Company</mat-label>
+            <input matInput type="Text" formControlName="companyid" />
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field appearance="fill">
+            <mat-label>State</mat-label>
+            <input matInput type="Text" formControlName="state" id="state" />
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field appearance="fill">
+            <mat-label>City</mat-label>
+            <input matInput type="Text" formControlName="city" id="city" />
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field appearance="fill">
+            <mat-label>Status</mat-label>
+            <input matInput type="Text" formControlName="status" id="status" />
+          </mat-form-field>
+        </div>
+
+        <div>
+            <mat-form-field appearance="fill">
+              <mat-label>Read Code</mat-label>
+              <input matInput type="Text" formControlName="readCode" id="readCode" />
+            </mat-form-field>
+        </div>    
+
+        <div>
+            <mat-form-field appearance="fill">
+              <mat-label>Renewed</mat-label>
+              <input matInput type="Text" formControlName="renewed" id="renewed" />
+            </mat-form-field>
+        </div>    
+        
+        <div>
+            <mat-form-field appearance="fill">
+              <mat-label>externalCode</mat-label>
+              <input matInput type="Text" formControlName="externalCode" id="externalCode" />
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="fill">
+              <mat-label>subsidyValue</mat-label>
+              <input matInput type="Text" formControlName="subsidyValue" id="subsidyValue" />
+            </mat-form-field>
+        </div>      
+        <div>
+            <mat-form-field appearance="fill">
+              <mat-label>SubsidyStatus</mat-label>
+              <input matInput type="Text" formControlName="subsidyStatus" id="subsidyStatus" />
+            </mat-form-field>
+        </div>      
+      </div>
+    </div>
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-button type="submit" [disabled]="!form.valid">Ok</button>
+    <button mat-button (click)="cancel()">Cancel</button>
+    <button
+      *ngIf="data.enableDelete"
+      mat-fab
+      color="primary"
+      aria-label="Delete"
+      [mat-dialog-close]="{ result: data, delete: true }">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>    
+</form>
+
+<hr>
+  <pre>
+    Estatus form: {{form.valid}}
+    <br>
+    status: {{form.status}}
+
+  </pre>
+
+  <pre>
+    {{form.value | json}}
+  </pre>
+

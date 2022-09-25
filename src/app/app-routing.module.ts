@@ -11,6 +11,7 @@ import { TaskIndexComponent } from './components/task-index/task-index.component
 import { ContactComponent } from './components/contact/contact.component';
 import { ContactDialogComponent } from './components/contact-dialog/contact-dialog.component';
 import { SectorComponent } from './components/sector/sector.component';
+import { SuscriptionComponent } from './components/suscription/suscription.component';
 const routes: Routes = [
   { path: '', redirectTo: '/sign-in', pathMatch: 'full' },
   { path: 'sign-in', component: SignInComponent },
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'task-index', component: TaskIndexComponent },
   { path: 'task', component: TaskComponent },
   { path: 'contacts', component: ContactComponent},
+  { path: 'suscriptions', component: SuscriptionComponent},
   { path: 'sectors', component: SectorComponent},
   { path: 'contact-dialog', component: ContactDialogComponent}
 ];

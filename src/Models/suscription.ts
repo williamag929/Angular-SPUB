@@ -1,4 +1,4 @@
-export interface suscription{
+export interface Suscription{
     id?: string;
     companyid: string;
     contactid: string;

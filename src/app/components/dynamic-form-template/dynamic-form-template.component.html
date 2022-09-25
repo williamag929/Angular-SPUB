@@ -1,6 +1,5 @@
 <div [formGroup]="form">
     <div [ngSwitch]="model.controlType">
-        <div class="errorMessage" *ngIf="!isValid">{{model.label}} is required</div>
         <mat-form-field appearance="fill" *ngSwitchCase="'textbox'">
             <mat-label [attr.for]="model.key">{{model.label}}</mat-label>
             <input matInput *ngSwitchCase="'textbox'" [formControlName]="model.key"

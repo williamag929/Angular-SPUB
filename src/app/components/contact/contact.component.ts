@@ -21,13 +21,13 @@ const getObservable = (collection: AngularFirestoreCollection<Contact>) => {
   styleUrls: ['./contact.component.css']
 })
 export class ContactComponent implements OnInit {
-  displayedColumns: string[] = ['firstname','lastname','address','email'];
+  displayedColumns: string[] = ['firstName','lastName','address','email'];
   contacts = getObservable(this.store.collection('contacts')) as Observable<Contact[]>;
   dataSource = new MatTableDataSource<Contact>();
   itemList = Array<Contact>();
   
-  @ViewChild(MatPaginator)
-  paginator!: MatPaginator;
+ // @ViewChild(MatPaginator)
+ // paginator!: MatPaginator;
 
   ngAfterViewInit() {
     }
@@ -36,7 +36,6 @@ export class ContactComponent implements OnInit {
   {
     console.log(row);
   } 
-
 
   constructor(private dialog: MatDialog, private store: AngularFirestore) {
   }
@@ -48,7 +47,7 @@ export class ContactComponent implements OnInit {
         takeUntil(this.destroy$) // Complete & cleanup
     ).subscribe(data => this.dataSource.data = data);
  
-    this.dataSource.paginator = this.paginator;
+    //this.dataSource.paginator = this.paginator;
   
   }
 
@@ -56,25 +55,46 @@ export class ContactComponent implements OnInit {
     const dialogRef = this.dialog.open(ContactDialogComponent, {
       width: '270px',
       data: {
-        task: {},
+        contact: {},
       },
     });
     dialogRef
       .afterClosed()
       .subscribe((result: ContactDialogResult|undefined) => {
+        console.log('close',result);      
         if (!result) {
           return;
         }
-        this.store.collection('contacts').add(result.contact);
+        this.store.collection('contacts').add(result);
       });
 
   }
 
+
+  editContact(row: Contact){
+    const dialogRef = this.dialog.open(ContactDialogComponent, {
+      width: '270px',
+      data: {
+        contact: row,
+        enableDelete: true,
+      },
+    });
+    dialogRef.afterClosed().subscribe((result: ContactDialogResult|undefined) => {    
+      if (!result) {
+        return;
+      }
+      if (result.delete) {
+        this.store.collection('contacts').doc(row.id).delete();
+      } else {
+        this.store.collection('contacts').doc(row.id).update(result);
+      }
+    });
+  }
+
+
   ngOnDestroy() {
     this.destroy$.next();
 }
-
-
 
 }
 function subscribe(arg0: (data: any) => any) {
