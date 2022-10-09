@@ -1,9 +1,9 @@
 <mat-toolbar color="primary">
     <mat-toolbar-row>
       <button mat-icon-button>
-        <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+        <mat-icon (click)="sidenav.toggle()">Menu</mat-icon>
       </button>
-      <h1>SimpleCRM</h1>
+      <h1></h1>
       <span class="menu-spacer"></span>
       <div>
         <a mat-button [routerLink]="'/task-index'"> Task </a>
@@ -15,27 +15,28 @@
     </mat-toolbar-row>
   
     <mat-toolbar-row>
-        <span style="font-size: 12px;">SimpleCRM helps you easily manage your contacts</span>
-      </mat-toolbar-row>
-  </mat-toolbar>
+      <span style="font-size: 12px;">SimpleCRM helps you easily manage your contacts</span>
+    </mat-toolbar-row>
+</mat-toolbar>
 
-  <mat-sidenav-container>
-    <mat-sidenav #sidenav>
-      <mat-nav-list>
-  
-        <a mat-list-item [routerLink]="'/contacts'"> Contacts </a>
-        <a mat-list-item [routerLink]="'/sectors'"> Sectors </a>
-        <a mat-list-item [routerLink]="'/suscription'"> Activities </a>
-        <a mat-list-item (click)="sidenav.toggle()" href="" mat-list-item>Close</a>
-  
-      </mat-nav-list>
-    </mat-sidenav>
-    <mat-sidenav-content>
-      <div style="height: 88vh;">
-  
-        <router-outlet></router-outlet>
-      </div>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav>
+    <mat-nav-list>
+      <a mat-button [routerLink]="'/task-index'"> Task </a>
+      <a mat-button [routerLink]="'/contacts'"> Contacts </a>
+      <a mat-button [routerLink]="'/suscriptions'"> suscriptions </a>
+      <a mat-button [routerLink]="'/sectors'"> Sectors </a>
+      <a mat-button [routerLink]="'/create-activity'"> Create Activity </a>
+      <a mat-list-item (click)="sidenav.toggle()" href="" mat-list-item> Close </a>
+
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div style="height: 88vh;">
+
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
 
   
